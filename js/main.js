@@ -1,16 +1,13 @@
-fr = 10;
-
-
 function preload() {
-	loadStrings("level/2.level", loadLevel);
+	loadStrings("level/1.level", loadLevel);
+	initCoordinates();
 	initTiles();
-	// initCoordinates();
 	// scaleTiles(cellSide);
 	preloadCharacter();
 }
 
 function setup() {
-	frameRate(fr);
+	frameRate(framerate);
 	initControl();
 	canvas = createCanvas(minDim, minDim + controlHeight);
 	initMapSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide);

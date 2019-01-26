@@ -9,7 +9,7 @@ X cross
 function initTiles() {
 	for (let next of tileTypes) {
 		// console.log("tiles/" + next + ".png");
-		tiles[next] = loadImage("tiles/" + next + ".png", scaleTile);
+		tiles[next] = loadImage("images/tiles/" + next + ".png", scaleTile);
 	}	
 }
 

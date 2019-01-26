@@ -7,10 +7,11 @@ function grid2screen(pos) {
 }
 
 function screen2grid(pos) {
-
-	return [Math.floor((pos[0] + cellSide/2) % cellSide),
-		Math.floor((pos[1] + cellSide/2) % cellSide)];
+	return [Math.floor((pos[0]) / cellSide),
+		Math.floor((pos[1]) / cellSide)];
 }
+
+var framerate = 10;
 
 // declare shared/global variables
 var gridWidth = 0; // depends on level

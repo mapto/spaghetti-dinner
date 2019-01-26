@@ -1,15 +1,16 @@
 var charImage;
 var character = {};
 
+var charSize = cellSide;
 
 function preloadCharacter() {
-	charImage = loadImage("images/pirate.png", scaleTile);
+	charImage = loadImage("images/pirate.png", scaleTile); // TODO: scale not charSize - dependent
 }
 
 function initCharacter() {
-	character.sprite = createSprite(0, 0, cellSide, cellSide);
+	character.sprite = createSprite(0, 0, charSize, charSize);
 	character.sprite.addImage("3", charImage);
-	character.pos = grid2screen([Math.ceil(gridWidth/2), gridHeight + 1]);
+	character.pos = grid2screen([Math.ceil(gridWidth/2), gridHeight]);
 	character.draw = character.sprite.draw;
 }
 
