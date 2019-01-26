@@ -46,7 +46,7 @@ function initCoordinates() {
 	cellSide = Math.floor(min(minDim / gridHeight, minDim / gridWidth));
 
 	if (gridHeight && gridWidth) {
-		levelHeight = cellSide * gridHeight - controlHeight;
+		levelHeight = cellSide * gridHeight;
 		levelWidth = cellSide * gridWidth;
 		controlWidth = levelWidth;		
 	}
