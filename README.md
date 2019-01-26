@@ -1,2 +1,6 @@
 # spaghetti-dinner
 Gotta go home for dinner...
+
+This game is developed in [p5.js](http://p5js.org) as part of the Global Game Jam 2019...
+
+
