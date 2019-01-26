@@ -37,7 +37,8 @@ var cellSide = Math.floor(min(minDim / gridHeight, minDim / gridWidth));
 var level = {};
 var gridSprites = [];
 var mapImages = [];
-var tileTypes = Object.keys(blocks);
+// var tileTypes = Object.keys(blocks);
+var tileTypes = ['O', 'I', 'L', 'T', 'X', 'L0', 'L1', 'L2', 'L3'];
 var tiles = {};
 
 var centerX = 0;

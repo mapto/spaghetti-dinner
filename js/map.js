@@ -38,6 +38,8 @@ function loadLevel(data) {
 	if (gridWidth % 2 === 0) {
 		alert("Level must have odd number of columns");
 	}
+
+	// Load shapes
 	for (let i = 0; data[i]; i++) {
 		cell[i] = [];
 		for (let j = 0; j < data[i].length; j++) {
@@ -46,6 +48,8 @@ function loadLevel(data) {
 		rows = i + 1;
 	}
 	gridHeight = rows;
+
+	// Load rotations
 	for (let i = rows + 1; data[i]; i++) {
 		rot[i-rows-1] = [];
 		for (let j = 0; j < data[i].length; j++) {
@@ -69,7 +73,13 @@ function initLevel(level) {
 			push();
 			var m = createImage(cellSide, cellSide);
 			mw = m.width; mh = m.height;
-			m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);
+			// m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);
+			let candidate = level.cell[i][j] + level.rot[i][j];
+			if (candidate in tiles) {
+				m.copy(tiles[level.cell[i][j] + level.rot[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);				
+			} else {
+				m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);				
+			}
 			gridSprites[j][i].addImage("grid" + i + j, m);  // coordinates swapped to match level file
 			pop();
 		}
@@ -82,7 +92,7 @@ function drawLevel(level) {
 		for (let j in level.cell[i]) {
 			push();
 			translate(j * cellSide + cellSide/2, i * cellSide + cellSide/2);
-			rotate(level.rot[i][j] * PI/2);
+			// rotate(level.rot[i][j] * PI/2);
 			gridSprites[j][i].draw();
 			pop();
 		}

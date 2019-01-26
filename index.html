@@ -21,7 +21,7 @@
   <meta property="og:description" content="Spaghetti Dinner: A GGJ2019 game" /> <!-- duplicate of meta description -->
 
   <link rel="stylesheet" href="css/reset.css">
-
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Caveat|Caveat+Brush|Gloria+Hallelujah|Special+Elite|VT323|Shadows+Into+Light|Righteous|Pacifico|Amatic+SC" rel="stylesheet">
 	  <style>
 html {
     height: 100%;
@@ -31,6 +31,18 @@ body {
   margin: 0;
   min-height: 100%;
 
+}
+
+h1 {
+  font-size: 6.6em;
+}
+
+h2 {
+  font-size: 2.3em;
+}
+
+h1, h2 {
+  font-family: "Amatic SC";
 }
 
 div {
@@ -45,17 +57,28 @@ div {
   width: 700px;
 }
 
-img {
-  width: 300px;
-}
 
 a {
   border-radius: 10px;
-  margin: 30px;
+  margin: 1em 3em 0 3em;
+  position: absolute;
+  bottom: 1em;
 }
 
 a:hover {
   background-color: #ccc;
+}
+
+#one {
+  left: 0;
+}
+
+#two {
+  right: 0;
+}
+
+img {
+  width: 25em;
 }
 
 	 </style>
@@ -65,8 +88,8 @@ a:hover {
       <h1>Spaghetti Dinner!</h1>
       <h2>Gotta go home for dinner, the pasta is getting cold...</h2>
       <div>
-        <a href="play.html?c=pirate"><img src="images/pirate.png"></a>
-        <a href="play.html?c=lumberjack"><img src="images/lumberjack.png"></a>
+        <a id="one" href="play.html?c=pirate"><img src="images/pirate.png"></a>
+        <a id="two" href="play.html?c=lumberjack"><img src="images/lumberjack.png"></a>
       </div>
     </div>
 	</body>
