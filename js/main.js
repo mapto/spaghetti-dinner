@@ -1,5 +1,7 @@
 function preload() {
-	loadStrings("level/1.level", loadLevel);
+	let url = new URL(location.href);
+	let lvl = url.searchParams.get("l") || 0;
+	loadStrings("level/" + lvl + ".level", loadLevel);
 	initCoordinates();
 	initTiles();
 	// scaleTiles(cellSide);
@@ -24,6 +26,15 @@ function draw() {
 	drawLevel(level);
 	// drawSprites();
 	drawCharacter();
+
+  	fill(204, 101, 192, 127);
+  	stroke(127, 63, 120);
+  	strokeWeight(2);
+	rect(0, levelHeight, levelWidth, levelHeight + controlHeight);
+    circle(centerX, centerY, joystickIdleArea);
+    if (started) {
+    	circle(mouseX, mouseY, 10);    	
+    }
 }
 
 window.onresize = function() {

@@ -22,52 +22,32 @@
 
   <link rel="stylesheet" href="css/reset.css">
 
+	  <script src="lib/p5.min.js" type="text/javascript"></script>
+	  <script src="lib/p5.dom.min.js" type="text/javascript" language="javascript"></script>
+	  <script src="lib/p5.play.js" type="text/javascript"></script>  
+
+    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/map.js" type="text/javascript"></script>
+    <script src="js/character.js" type="text/javascript"></script>
+    <script src="js/control.js" type="text/javascript"></script>
+	  <script src="js/main.js" type="text/javascript"></script>
 	  <style>
 html {
     height: 100%;
 }
-
 body {
   margin: 0;
   min-height: 100%;
 
 }
-
-div {
-  display: flex;
-}
-
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+canvas {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
   touch-action: none;
-  width: 700px;
 }
-
-img {
-  width: 300px;
-}
-
-a {
-  border-radius: 10px;
-  margin: 30px;
-}
-
-a:hover {
-  background-color: #ccc;
-}
-
 	 </style>
 	</head>
 	<body>
-    <div id="content">
-      <h1>Spaghetti Dinner!</h1>
-      <h2>Gotta go home for dinner, the pasta is getting cold...</h2>
-      <div>
-        <a href="play.html?c=pirate"><img src="images/pirate.png"></a>
-        <a href="play.html?c=lumberjack"><img src="images/lumberjack.png"></a>
-      </div>
-    </div>
 	</body>
 </html>

@@ -11,6 +11,15 @@ function screen2grid(pos) {
 		Math.floor((pos[1]) / cellSide)];
 }
 
+// four directions: top, right, bottom, left
+var blocks = {
+	'O': [true, true, true, true],
+	'I': [false, true, false, true],
+	'L': [false, false, true, true],
+	'T': [true, false, false, false],
+	'X': [false, false, false, false],
+}
+
 var framerate = 10;
 
 // declare shared/global variables
@@ -28,8 +37,12 @@ var cellSide = Math.floor(min(minDim / gridHeight, minDim / gridWidth));
 var level = {};
 var gridSprites = [];
 var mapImages = [];
-var tileTypes = ['O', 'I', 'L', 'T', 'X'];
+var tileTypes = Object.keys(blocks);
 var tiles = {};
+
+var centerX = 0;
+var centerY = 0;
+var joystickIdleArea = 0;
 
 var canvas;
 
@@ -43,13 +56,13 @@ function initCoordinates() {
 	levelWidth = window.innerWidth;
 	levelHeight = window.innerHeight - controlHeight;
 
-	minDim = min(levelWidth, levelHeight) - 100;  // margin
+	minDim = min(levelWidth, levelHeight); // - 100;  // margin
 	cellSide = Math.floor(min(minDim / gridHeight, minDim / gridWidth));
 
 	if (gridHeight && gridWidth) {
 		levelHeight = cellSide * gridHeight;
 		levelWidth = cellSide * gridWidth;
-		controlWidth = levelWidth;		
+		controlWidth = levelWidth;
 	}
 }
 

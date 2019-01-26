@@ -4,7 +4,9 @@ var character = {};
 var charSize = cellSide;
 
 function preloadCharacter() {
-	charImage = loadImage("images/pirate.png", scaleTile); // TODO: scale not charSize - dependent
+	let url = new URL(location.href);
+	let ch = url.searchParams.get("c") || "pirate";
+	charImage = loadImage("images/" + ch + ".png", scaleTile); // TODO: scale not charSize - dependent
 }
 
 function initCharacter() {

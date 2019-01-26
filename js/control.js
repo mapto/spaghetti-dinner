@@ -1,6 +1,3 @@
-var centerX = 0;
-var centerY = 0;
-
 var started = false;
 
 var swap = [1,-1];
@@ -8,9 +5,11 @@ var swap = [1,-1];
 var speed = framerate * .01;
 
 function initControl() {
-  centerX = window.innerWidth/2;
-  centerY = minDim + controlHeight/2;
-	
+  centerX = levelWidth/2;
+  centerY = levelHeight + controlHeight/2;
+  console.log(levelHeight);
+  console.log(controlHeight);
+  joystickIdleArea = cellSide/2;	
 }
 
 function collisionTile(delta, dir) {
@@ -18,19 +17,45 @@ function collisionTile(delta, dir) {
 	// console.log(dir);
 	// console.log(character.pos);
 	result = screen2grid(character.pos);
-	console.log(result);
-	let cell = level.cell[result[0]][result[1]];
-	let rot = level.rot[result[0]][result[1]];
-	return result;
+	// console.log(result);
+
+	if (!dir) { // x
+		return [result[0]-Math.sign(delta),result[1]];
+	} else { // y
+		return [result[0],result[1]-Math.sign(delta)];
+	}
 }
 
-function collide(delta, dir) {
+function blocked(pos, delta, dir) {
+	let type = level.cell[pos[0]][pos[1]];
+	let rot = level.rot[pos[0]][pos[1]];
+	// console.log(type);
+	// console.log(character.pos);
+	// console.log(pos);
+	// console.log("delta: " + Math.sign(delta));
+	// console.log("dir: " + dir);
+	// let shift = shiftMap[""+Math.sign(delta)][dir];
+	let shift = Math.sign(delta) - dir + 2;
+	// console.log("shift: " + shift);
+	// console.log("block: " + blocks[type][shift%4]);
+	return blocks[type][shift%4];
+}
+
+function canGoOut(delta, dir) {
+	pos = screen2grid(character.pos);
+	// console.log("canGoOut");
+	return !blocked(pos, delta, dir);
+}
+
+function canGoIn(delta, dir) {
+	col = collisionTile(delta, dir);
+	// console.log("canGoIn");
+	return !blocked(col, -delta, dir);
+}
+
+function canMove(delta, dir) {
 	tilePos = screen2grid(character.pos);
-	if (tilePos[0] < 0 || tilePos[0] >= gridWidth
-		|| tilePos[1] < 0 || tilePos[1] >= gridHeight) {
-		return false;
-	}
-	collisionTile(delta, dir);
+	return canGoOut(delta, dir) && canGoIn(delta, dir);
 	// character.sprite.collide()
 }
 
@@ -39,7 +64,8 @@ function endGame() {
 }
 
 function mousePressed(event) {
-  // console.log(event);
+  console.log(event);
+  console.log([centerX, centerY]);
 	started = true;
 }
 
@@ -66,18 +92,21 @@ function mouseDragged(event) {
   	dir = 1;
   }
 
-  var joystickIdleArea = cellSide/2;
   if (Math.abs(d[dir]) > joystickIdleArea) {
   	delta = d[dir] * speed;
+	console.log("delta: " + Math.sign(delta));
+
   	mapCenter = Math.floor(levelDim[dir]/2);
-  	if (Math.abs(character.pos[dir] - delta - mapCenter) < mapCenter) {
-	  	character.pos[dir] -= delta;
+  	if (canMove(delta, dir)) {
+	  	if (Math.abs(character.pos[dir] - delta - mapCenter) < mapCenter) {
+		  	character.pos[dir] -= delta;
+	  	}  		
   	}
-  	console.log(screen2grid(character.pos));
+
   	// if (!collide(delta, dir)) {
   	// 	character.pos[dir] += delta;	
   	// }
-  	// collisionTile(delta, dir);
+  	// myPos = screen2grid(character.pos);
 	
 	// get other dimension back on track
 	var other = 1 - dir;
@@ -102,5 +131,6 @@ touchStarted = mousePressed;
 touchEnded = mouseReleased;
 
 function touchMoved(event) {
+	console.log(event);
 	mouseDragged(event.touches[0]);
 }

@@ -1,11 +1,3 @@
-/*
-. - empty
-I - line
-L - angle
-T - fork
-X cross
-*/
-
 function initTiles() {
 	for (let next of tileTypes) {
 		// console.log("tiles/" + next + ".png");
