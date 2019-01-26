@@ -25,6 +25,7 @@ var cellSide = min(minDim / gridHeight, minDim / gridWidth);
 
 var level = {};
 var gridSprites = [];
+var mapImages = [];
 var tileTypes = ['O', 'I', 'L', 'T', 'X'];
 var tiles = {};
 
@@ -108,6 +109,19 @@ function loadLevel(data) {
 	// scaleTiles(cellSide);
 }
 
+function initLevel(level) {
+	for (let i in level.cell) {
+		for (let j in level.cell[i]) {
+			push();
+			var m = createImage(cellSide, cellSide);
+			mw = m.width; mh = m.height;
+			m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);
+			gridSprites[j][i].addImage("grid" + i + j, m);  // coordinates swapped to match level file
+			pop();
+		}
+	}
+}
+
 function drawLevel(level) {
 	for (let i in level.cell) {
 		// console.log(i);		
@@ -122,7 +136,13 @@ function drawLevel(level) {
 			// console.log(tiles[level.cell[i][j]]);
 			// console.log(tiles);
 			// image(tiles[level.cell[i][j]], gridXZero + i * cellSide, gridYZero + j * cellSide);
-			gridSprites[j][i].addImage("grid" + i + j, tiles[level.cell[i][j]]);  // coordinates swapped to match level file
+			push();
+			// console.log("" + i + "," + j);
+			// translate(-cellSide/2, -cellSide/2);
+			translate(j * cellSide + cellSide/2, i * cellSide + cellSide/2);
+			rotate(level.rot[i][j] * PI/2);
+			gridSprites[j][i].draw();
+			pop();
 		}
 	}
 }
@@ -135,19 +155,20 @@ function preload() {
 }
 
 function setup() {
-
+	frameRate(1);
 	canvas = createCanvas(minDim, minDim);
 	initSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide);
-	console.log(tiles);
-	console.log(gridSprites);
-	if (level && gridSprites && gridSprites.length) {
-		drawLevel(level);
-	}
+	// console.log(tiles);
+	// console.log(gridSprites);
+	// if (level && gridSprites && gridSprites.length) {
+		initLevel(level);
+	// }
 }
 
 function draw() {
-	background(155);	
-	drawSprites();
+	// background(155);
+	drawLevel(level);
+	// drawSprites();
 }
 
 window.onresize = function() {
@@ -155,7 +176,7 @@ window.onresize = function() {
 
 	//canvas.size(minDim,minDim);
 	console.log(cellSide);
-	scaleTiles(cellSide);
+	// scaleTiles(cellSide);
 	//initSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide);
 	// console.log(tiles);
 	// console.log(gridSprites);
