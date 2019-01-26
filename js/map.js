@@ -13,10 +13,6 @@ function initTiles() {
 	}	
 }
 
-function scaleTile(img) {
-	img.resize(cellSide, 0);
-}
-
 /*
 function scaleTiles(cellSide) {
 	if (!tiles || !cellSide || cellSide === Infinity) {
@@ -47,6 +43,9 @@ function loadLevel(data) {
 	var cell = [], rot = [];
 	var rows = 0, rot_rows = 0;
 	gridWidth = data[0].length;
+	if (gridWidth % 2 === 0) {
+		alert("Level must have odd number of columns");
+	}
 	for (let i = 0; data[i]; i++) {
 		cell[i] = [];
 		for (let j = 0; j < data[i].length; j++) {
@@ -89,19 +88,7 @@ function drawLevel(level) {
 	for (let i in level.cell) {
 		// console.log(i);		
 		for (let j in level.cell[i]) {
-			//gridSprites[i][j] = createSprite(gridXZero, gridYZero, cellSide, cellSide);
-			//gridSprites[i][j] = 
-			// console.log(gridXZero);
-			// console.log(gridYZero);
-			// console.log(cellSide);
-			// console.log(j);
-			// console.log(level.cell[i][j]);
-			// console.log(tiles[level.cell[i][j]]);
-			// console.log(tiles);
-			// image(tiles[level.cell[i][j]], gridXZero + i * cellSide, gridYZero + j * cellSide);
 			push();
-			// console.log("" + i + "," + j);
-			// translate(-cellSide/2, -cellSide/2);
 			translate(j * cellSide + cellSide/2, i * cellSide + cellSide/2);
 			rotate(level.rot[i][j] * PI/2);
 			gridSprites[j][i].draw();
