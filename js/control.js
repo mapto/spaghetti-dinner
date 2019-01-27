@@ -2,7 +2,7 @@ var started = false;
 
 var swap = [1,-1];
 
-var speed = framerate * .01;
+var speed = framerate * .005;
 
 function recalculateControl() {
   controlWidth = levelWidth;
@@ -35,7 +35,7 @@ function blocked(pos, delta, dir) {
 	// console.log(type);
 	// console.log(character.pos);
 	// console.log(level);
-	console.log(pos);
+	// console.log(pos);
 	// console.log("delta: " + Math.sign(delta));
 	// console.log("dir: " + dir);
 	let shift = calcShift(delta, dir);
@@ -46,19 +46,19 @@ function blocked(pos, delta, dir) {
 	// console.log("rot: " + rot);
 	// console.log("shift: " + shift);
 	// console.log("block: " + blocks[type]);
-	console.log("block: " + blocks[type][(shift-rot)%4]);
+	// console.log("block: " + blocks[type][(shift-rot)%4]);
 	return blocks[type][(shift-rot)%4];
 }
 
 function canGoOut(delta, dir) {
 	pos = screen2grid(character.pos);
-	console.log("canGoOut");
+	// console.log("canGoOut");
 	return !blocked(pos, delta, dir);
 }
 
 function canGoIn(delta, dir) {
 	col = collisionTile(delta, dir);
-	console.log("canGoIn");
+	// console.log("canGoIn");
 	return !blocked(col, -delta, dir);
 }
 
@@ -69,14 +69,14 @@ function canMove(delta, dir) {
 		&& dir === 1 && Math.sign(delta) === -1) {
 		reinit();
 	}
-	if (tilePos[0] === 0 && (tilePos[1] === gridHeight - 1 || tilePos[1] === 0)
+	if (tilePos[1] === 0 && (tilePos[0] === gridHeight - 1 || tilePos[0] === 0)
 		&& dir === 1 && Math.sign(delta) === 1) {
 		nextLevel();
 	}
 
 	let tileCoord = grid2canvasc(tilePos);
-	console.log(tileCoord);
-	console.log(character.pos)
+	// console.log(tileCoord);
+	// console.log(character.pos)
 	if (Math.abs(character.pos[dir] - tileCoord[dir]) > 2/3 * cellSide) {
 		return true;
 	}
@@ -103,7 +103,7 @@ function reinit() {
 }
 
 function nextLevel() {
-	console.log("Next level");
+	// console.log("Next level");
 	let url = new URL(location.href);
 	let ch = url.searchParams.get("c") || "pirate";
 	let lvl =  url.searchParams.get("l") || 0;
@@ -111,7 +111,7 @@ function nextLevel() {
 }
 
 function endGame() {
-	console.log("Game over");
+	// console.log("Game over");
 	location.href = "game-over.html";
 }
 
@@ -190,8 +190,10 @@ function mouseDragged(event) {
 		character.pos[other] = Math.floor(character.pos[other]/cellSide)*cellSide + cellSide/2;
 	}
 	*/
+	// console.log(character.pos);
 	let newCoord = grid2canvasc(canvas2grid(character.pos));
-	character.pos[other] = newCoord[other];
+	character.pos[other] = newCoord[other] + cellSide/2;
+	// console.log(character.pos);
 
 	// do not go out of map
 	if (character.pos[other] > levelDim[other]) {
@@ -207,6 +209,6 @@ touchStarted = mousePressed;
 touchEnded = mouseReleased;
 
 function touchMoved(event) {
-	console.log(event);
+	// console.log(event);
 	mouseDragged(event.touches[0]);
 }
