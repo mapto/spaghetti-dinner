@@ -6,9 +6,13 @@ Three grids need to be provided, separated by an empty line:
 * Tile type:
 
 ** O - no road
+
 ** I - straight road
+
 ** L - turn
+
 ** T - junction
+
 ** X - crossroad
 
 * Rotation - a number indicates number of 90% clockwise rotations.
