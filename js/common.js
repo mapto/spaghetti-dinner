@@ -86,6 +86,12 @@ var joystickIdleArea = 20;
 
 var canvas;
 
+
+// audio variable
+var song;
+
+
+
 function recalculateSizes() {
 	if (!gridHeight || !gridWidth) {
 		return;

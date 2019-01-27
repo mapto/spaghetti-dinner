@@ -1,3 +1,4 @@
+
 function preload() {
 	loadLevel();
 	// initCoordinates();
@@ -5,6 +6,9 @@ function preload() {
 	// scaleTiles(cellSide);
 	loadCharacter();
 	loadMonster();
+	
+	// preloads audio
+	song = loadSound('../audio/loop1.0.mp3', function(){console.log("loaded")}, function(){console.log("failed")}); 
 }
 
 function setup() {

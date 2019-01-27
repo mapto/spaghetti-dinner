@@ -119,6 +119,16 @@ function mousePressed(event) {
   // console.log([event.pageX, event.pageY]);
   // console.log([centerX, centerY]);
 	started = true;
+	
+	
+	// audio check
+	if ( song.isPlaying() ) { // .isPlaying() returns a boolean
+    song.stop();
+    
+  } else {
+    song.play();
+    
+  }
 }
 
 function mouseReleased(event) {
