@@ -8,7 +8,7 @@ function preload() {
 	// loadMonster();
 	
 	// preloads audio
-	song = loadSound('../audio/loop1.0.mp3'); 
+	song = loadSound('audio/loop1.0.mp3'); 
 }
 
 function setup() {
