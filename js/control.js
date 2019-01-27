@@ -177,8 +177,8 @@ function mouseDragged(event) {
   	// myPos = screen2grid(character.pos);
 	
 	// get other dimension back on track
-	/*
 	var other = 1 - dir;
+	/*
 	var closer = character.pos[other] % cellSide;
 	if (closer > cellSide/2) {
 		character.pos[other] = Math.ceil(character.pos[other]/cellSide)*cellSide + cellSide/2;
