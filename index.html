@@ -19,39 +19,38 @@
 		<meta property="og:url" content="https://github.com/mapto/spaghetti-dinner" />
 		  <!--<meta property="og:image" content="images/logo.png" />--> <!-- higher resolution than favicon -->
 		<meta property="og:description" content="Spaghetti Dinner: A GGJ2019 game" /> <!-- duplicate of meta description -->
+		
+		
+		<!-- Boot Strap CDN -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-		<link rel="stylesheet" href="css/reset.css" type="text/css">
-		<link href="css/styles.css" rel="stylesheet" type="text/css">
-		<link href="css/grid.css" rel="stylesheet" type="text/css">
 
-		<!-- <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Caveat|Caveat+Brush|Gloria+Hallelujah|Special+Elite|VT323|Shadows+Into+Light|Righteous|Pacifico|Amatic+SC" rel="stylesheet"> -->
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+
 	</head>
 
 <body>
- 
-   
-    
-
-    
     
 <!-- Grid 2 x 2 -->    
-<div class="grid-container">
-
-<!-- Grid Header -->  
-<div class="grid-item">
-	<h1 class="h1 marginAuto">Spaghetti Dinner!</h1>
-    <h2 class="h2 marginAuto">Gotta go home for dinner, the pasta is getting cold...</h2>
-</div>
-
-	<div class="grid-item">
-		<a class="marginAuto" href="play.html?c=pirate"><img class="square" src="images/pirate.png"></a>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<h1 class="h1 marginAuto">Spaghetti Dinner!</h1>
+			<h2 class="h2 marginAuto">Gotta go home for dinner, the pasta is getting cold...</h2>
+		</div>
 	</div>
-  
-	<div class="grid-item">
-		<a class="marginAuto" href="play.html?c=lumberjack"><img class="square"  src="images/lumberjack.png"></a>
+	
+<div class="row">
+	<div class="col">	
+		<a class="marginAuto" href="play.html?c=pirate"><img class="img-fluid" src="images/pirate.png"></a>
 	</div>
+	<div class="col">
+		<a class="marginAuto" href="play.html?c=lumberjack"><img class="img-fluid"  src="images/lumberjack.png"></a>
+	</div>	
 
 </div>
+	</div>
 
 	</body>
 </html>
