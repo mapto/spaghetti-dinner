@@ -12,6 +12,9 @@ function preload() {
 }
 
 function setup() {
+	
+	
+	
 	recalculateSizes();
 	frameRate(framerate);
 	// initControl();
@@ -43,6 +46,23 @@ function draw() {
     if (started) {
     	circle(mouseX, mouseY, 10);    	
     }
+	
+	
+	// TEXT TIMER
+	textAlign(CENTER, TOP);
+	textSize(40);
+	text(timer, width/2, height/2);
+	
+	if (frameCount % 60 == 0 && timer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+    timer --;
+  }
+  if (timer == 0) {
+    text("GAME OVER", width/2, height*0.7);
+  }
+	
+	
+	
+	
 }
 
 window.onresize = function() {

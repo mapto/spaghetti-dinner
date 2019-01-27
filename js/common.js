@@ -91,6 +91,11 @@ var canvas;
 var song;
 
 
+// timer initialization
+
+let timer = 32
+
+
 
 function recalculateSizes() {
 	if (!gridHeight || !gridWidth) {
