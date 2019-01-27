@@ -18,23 +18,12 @@ function scaleTile(img) {
 	img.resize(cellSide, 0);
 }
 
-/*
-function scaleTiles(cellSide) {
-	if (!tiles || !cellSide || cellSide === Infinity) {
-		return;
+function scaleTiles() {
+	for (let next of Object.values(tiles)) {
+		scaleTile(next);
 	}
-	console.log(tiles);
-	console.log(cellSide);
-	for (let next in tiles) {
-		console.log(next);
-		console.log(tiles[next]);
-		console.log(tiles[next].width);
-		// console.log(tiles[next].scale);
-		// tiles[next].resize(cellSide / 5, cellSide / 5); //5px is the size of the image raster
-	}
-
 }
-*/
+
 function initMapSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide) {
 	for (let i = 0; i < gridWidth; i++ ) {
 			gridSprites[i] = [];
@@ -75,7 +64,7 @@ function parseLevel(data) {
 	}
 
 	level = {cell: cell, rot: rot};
-	console.log(level);
+	// console.log(level);
 	// initCoordinates();
 	// scaleTiles(cellSide);
 	loadTiles();

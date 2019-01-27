@@ -16,9 +16,11 @@ function setup() {
 	// console.log(tiles);
 	// console.log(gridSprites);
 	// if (level && gridSprites && gridSprites.length) {
-	initLevel(level);
-	initCharacter();
+	// initLevel(level);
+	// initCharacter();
+
 	// resizeCanvas(minDim, minDim + controlHeight);
+	window.onresize();
 }
 
 function draw() {
@@ -40,8 +42,15 @@ function draw() {
 window.onresize = function() {
 	recalculateSizes();
 	// initControl();
-	resizeCanvas(levelWidth, levelHeight + controlHeight);
+	
+	// console.log(cellSide);
+	scaleTiles();
+	scaleChar();
 
+	initLevel(level);
+	initCharacter();
+
+	resizeCanvas(levelWidth, levelHeight + controlHeight);
 	//canvas.size(minDim,minDim);
 	// console.log(cellSide);
 	// scaleTiles(cellSide);
