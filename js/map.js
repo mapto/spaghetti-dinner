@@ -1,7 +1,9 @@
 function loadLevel(argument) {
 	let url = new URL(location.href);
 	let lvl = url.searchParams.get("l") || 0;
-	loadStrings("level/" + lvl + ".level", parseLevel);
+	loadStrings("level/" + lvl + ".level", parseLevel, function() {
+		href.location = "chrome://dino";
+	});
 }
 
 function loadTiles() {

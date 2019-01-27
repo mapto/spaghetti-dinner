@@ -64,20 +64,14 @@ function canGoIn(delta, dir) {
 
 function canMove(delta, dir) {
 	let tilePos = screen2grid(character.pos);
-	console.log("CAnmove");
-	console.log(tilePos);
 
-	if (tilePos[0] === Math.floor(gridWidth/2) && tilePos[1] === gridHeight - 1) {
-		if (dir === 1 && Math.sign(delta) === -1) {
-			reinit();
-		}
-		return false;
+	if (tilePos[0] === Math.floor(gridWidth/2) && tilePos[1] === gridHeight - 1
+		&& dir === 1 && Math.sign(delta) === -1) {
+		reinit();
 	}
-	if (tilePos[0] === 0 && (tilePos[1] === gridHeight - 1 || tilePos[1] === 0)) {
-		if (dir === 1 && Math.sign(delta) === 1) {
-			endGame();
-		}
-		return false;
+	if (tilePos[0] === 0 && (tilePos[1] === gridHeight - 1 || tilePos[1] === 0)
+		&& dir === 1 && Math.sign(delta) === 1) {
+		nextLevel();
 	}
 
 	let tileCoord = grid2canvasc(tilePos);
@@ -108,12 +102,17 @@ function reinit() {
 	location.href = "index.html";
 }
 
-function endGame() {
-	console.log("End game");
+function nextLevel() {
+	console.log("Next level");
 	let url = new URL(location.href);
 	let ch = url.searchParams.get("c") || "pirate";
 	let lvl =  url.searchParams.get("l") || 0;
-	// location.href = "play.html?c=" + ch + "&l=" + (parseInt(lvl)+1);
+	location.href = "next.html?c=" + ch + "&l=" + (parseInt(lvl)+1);
+}
+
+function endGame() {
+	console.log("Game over");
+	location.href = "game-over.html";
 }
 
 function mousePressed(event) {
@@ -168,6 +167,7 @@ function mouseDragged(event) {
   	// myPos = screen2grid(character.pos);
 	
 	// get other dimension back on track
+	/*
 	var other = 1 - dir;
 	var closer = character.pos[other] % cellSide;
 	if (closer > cellSide/2) {
@@ -175,6 +175,9 @@ function mouseDragged(event) {
 	} else {
 		character.pos[other] = Math.floor(character.pos[other]/cellSide)*cellSide + cellSide/2;
 	}
+	*/
+	let newCoord = grid2canvasc(canvas2grid(character.pos));
+	character.pos[other] = newCoord[other];
 
 	// do not go out of map
 	if (character.pos[other] > levelDim[other]) {

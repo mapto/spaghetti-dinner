@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+		<!-- redirects after 10 seconds -->
+		<!-- <meta http-equiv="refresh" content="10;url=index.html?c=pirate" /> -->
+		
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="icon" type="image/png" href="images/favicon.png">
+
+		<title>Spaghetti Dinner</title>
+
+		<meta name="description" content="Spaghetti Dinner: A GGJ2019 game">
+		<meta name="author" content="github.com/mapto; github.com/ElectronicElement">
+
+		<meta name="keywords" content="Home, Spaghetti, Monster, Labyrinth" />
+		<meta name="description" content="Spaghetti Dinner: A GGJ2019 game" /> <!-- limit of 156 characters, apparently because of Google -->
+
+		  <!-- Open Graph -->
+		<meta property="og:title" content="spaghetti-dinner" /> <!-- duplicate of title -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://github.com/mapto/spaghetti-dinner" />
+		  <!--<meta property="og:image" content="images/logo.png" />--> <!-- higher resolution than favicon -->
+		<meta property="og:description" content="Spaghetti Dinner: A GGJ2019 game" /> <!-- duplicate of meta description -->
+
+		<link rel="stylesheet" href="css/reset.css" type="text/css">
+		<link href="css/styles.css" rel="stylesheet" type="text/css">
+		<link href="css/grid.css" rel="stylesheet" type="text/css">
+
+		<!-- <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Caveat|Caveat+Brush|Gloria+Hallelujah|Special+Elite|VT323|Shadows+Into+Light|Righteous|Pacifico|Amatic+SC" rel="stylesheet"> -->
+	</head>
+
+<body>
+
+	<!-- Grid Header -->  
+<div class="grid-container">
+	<div class="grid-item">
+		<img class="square"  src="images/monster.png">
+		<h5 class="marginAuto">GET READY FOR NEXT LEVEL!</h5>
+		<h2>(release mouse)</h2>
+
+	</div>
+
+
+</div>
+<script type="text/javascript">
+setTimeout(function(){
+	let url = new URL(location.href);
+	let ch = url.searchParams.get("c") || "pirate";
+	let lvl =  url.searchParams.get("l") || 0;
+	location.href = "play.html?c=" + ch + "&l=" + lvl;
+}, 3000);
+</script>
+	</body>
+</html>
