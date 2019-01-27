@@ -25,30 +25,40 @@ function collisionTile(delta, dir) {
 	}
 }
 
+function calcShift(delta, dir) {
+	return delta > 0 ? (dir ? 0 : 3) : (dir ? 2 : 1);
+}
+
 function blocked(pos, delta, dir) {
-	let type = level.cell[pos[0]][pos[1]];
-	let rot = level.rot[pos[0]][pos[1]];
+	let type = level.cell[pos[1]][pos[0]];
+	let rot = level.rot[pos[1]][pos[0]];
 	// console.log(type);
 	// console.log(character.pos);
-	// console.log(pos);
-	// console.log("delta: " + Math.sign(delta));
-	// console.log("dir: " + dir);
+	console.log(level);
+	console.log(pos);
+	console.log("delta: " + Math.sign(delta));
+	console.log("dir: " + dir);
+	let shift = calcShift(delta, dir);
 	// let shift = shiftMap[""+Math.sign(delta)][dir];
-	let shift = Math.sign(delta) - dir + 2;
-	// console.log("shift: " + shift);
-	// console.log("block: " + blocks[type][shift%4]);
-	return blocks[type + (shift%4)];
+	// let shift = Math.sign(delta) - dir + 2;
+	// let shift = Math.sign(delta) > 0 ? (dir ? 0 : 3) : (dir ? 2 : 1);
+
+	console.log("rot: " + rot);
+	console.log("shift: " + shift);
+	console.log("block: " + blocks[type]);
+	console.log("block: " + blocks[type][(shift-rot)%4]);
+	return blocks[type][(shift-rot)%4];
 }
 
 function canGoOut(delta, dir) {
 	pos = screen2grid(character.pos);
-	// console.log("canGoOut");
+	console.log("canGoOut");
 	return !blocked(pos, delta, dir);
 }
 
 function canGoIn(delta, dir) {
 	col = collisionTile(delta, dir);
-	// console.log("canGoIn");
+	console.log("canGoIn");
 	return !blocked(col, -delta, dir);
 }
 
@@ -96,7 +106,7 @@ function mouseDragged(event) {
 
   if (Math.abs(d[dir]) > joystickIdleArea) {
   	delta = d[dir] * speed;
-	console.log("delta: " + Math.sign(delta));
+	// console.log("delta: " + Math.sign(delta));
 
   	mapCenter = Math.floor(levelDim[dir]/2);
   	if (canMove(delta, dir)) {

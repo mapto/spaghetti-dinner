@@ -13,6 +13,15 @@ function screen2grid(pos) {
 
 // four directions: top, right, bottom, left
 var blocks = {
+	'O': [true, true, true, true],
+	'I': [false, true, false, true],
+	'L': [false, false, true, true],
+	'T': [true, false, false, false],
+	'X': [false, false, false, false],
+}
+
+/*
+var blocks = {
 	'O0': [true, true, true, true],
 	'O1': [true, true, true, true],
 	'O2': [true, true, true, true],
@@ -34,6 +43,7 @@ var blocks = {
 	'X2': [false, false, false, false],
 	'X3': [false, false, false, false],
 }
+*/
 
 var framerate = 10;
 
