@@ -13,11 +13,26 @@ function screen2grid(pos) {
 
 // four directions: top, right, bottom, left
 var blocks = {
-	'O': [true, true, true, true],
-	'I': [false, true, false, true],
-	'L': [false, false, true, true],
-	'T': [true, false, false, false],
-	'X': [false, false, false, false],
+	'O0': [true, true, true, true],
+	'O1': [true, true, true, true],
+	'O2': [true, true, true, true],
+	'O3': [true, true, true, true],
+	'I0': [false, true, false, true],
+	'I1': [true, false, true, false],
+	'I2': [false, true, false, true],
+	'I3': [true, false, true, false],
+	'L0': [false, false, true, true],
+	'L1': [true, false, false, true],
+	'L2': [true, true, false, false],
+	'L3': [false, true, true, false],
+	'T0': [true, false, false, false],
+	'T1': [false, true, false, false],
+	'T2': [false, false, true, false],
+	'T3': [false, false, false, true],
+	'X0': [false, false, false, false],
+	'X1': [false, false, false, false],
+	'X2': [false, false, false, false],
+	'X3': [false, false, false, false],
 }
 
 var framerate = 10;
@@ -43,7 +58,7 @@ var tiles = {};
 
 var centerX = 0;
 var centerY = 0;
-var joystickIdleArea = 0;
+var joystickIdleArea = 20;
 
 var canvas;
 

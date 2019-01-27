@@ -33,7 +33,7 @@ function draw() {
   	stroke(127, 63, 120);
   	strokeWeight(2);
 	rect(0, levelHeight, levelWidth, levelHeight + controlHeight);
-    circle(centerX, centerY, joystickIdleArea);
+    circle(centerX - (window.innerWidth - levelWidth)/2, centerY, joystickIdleArea);
     if (started) {
     	circle(mouseX, mouseY, 10);    	
     }

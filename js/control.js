@@ -6,9 +6,9 @@ var speed = framerate * .01;
 
 function recalculateControl() {
   controlWidth = levelWidth;
-  centerX = controlWidth/2;
-  centerY = levelHeight + controlHeight/2;
-  joystickIdleArea = cellSide/2;	
+  centerX = window.innerWidth/2;	
+  centerY = levelHeight + (controlHeight/2);
+  // joystickIdleArea = cellSide/2;	
 }
 
 function collisionTile(delta, dir) {
@@ -37,7 +37,7 @@ function blocked(pos, delta, dir) {
 	let shift = Math.sign(delta) - dir + 2;
 	// console.log("shift: " + shift);
 	// console.log("block: " + blocks[type][shift%4]);
-	return blocks[type][shift%4];
+	return blocks[type + (shift%4)];
 }
 
 function canGoOut(delta, dir) {
@@ -63,8 +63,8 @@ function endGame() {
 }
 
 function mousePressed(event) {
-  console.log(event);
-  console.log([centerX, centerY]);
+  // console.log([event.pageX, event.pageY]);
+  // console.log([centerX, centerY]);
 	started = true;
 }
 
@@ -82,6 +82,9 @@ function mouseMove(event) {
 function mouseDragged(event) {
   // console.log("drag");
   // console.log(event);
+  // console.log([event.pageX, event.pageY]);
+  // console.log([centerX, centerY]);
+
   levelDim = [levelWidth, levelHeight];
   d = [centerX - event.pageX, centerY - event.pageY];
   dir = 2;

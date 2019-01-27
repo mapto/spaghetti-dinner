@@ -78,10 +78,10 @@ function initLevel(level) {
 			mw = m.width; mh = m.height;
 			// m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);
 			let candidate = level.cell[i][j] + (level.rot[i][j]%4);
-			console.log(candidate);
+			// console.log(candidate);
 			// if (candidate in tiles) {
-			console.log(tiles);
-			console.log(tiles[candidate]);
+			// console.log(tiles);
+			// console.log(tiles[candidate]);
 			m.copy(tiles[candidate], 0, 0, mw, mh, 0, 0, mw, mh);				
 			// } else {
 				// m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);				
