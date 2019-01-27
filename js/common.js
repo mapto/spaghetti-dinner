@@ -23,8 +23,8 @@ var blocks = {
 var framerate = 10;
 
 // declare shared/global variables
-var gridWidth = 0; // depends on level
-var gridHeight = 0; // depends on level
+var gridWidth = 3; // depends on level
+var gridHeight = 3; // depends on level
 var controlHeight = 200;
 var controlWidth = window.innerWidth;
 var levelWidth = window.innerWidth;
@@ -38,7 +38,7 @@ var level = {};
 var gridSprites = [];
 var mapImages = [];
 // var tileTypes = Object.keys(blocks);
-var tileTypes = ['O', 'I', 'L', 'T', 'X', 'L0', 'L1', 'L2', 'L3'];
+var tileTypes = ['O', 'I', 'L', 'T', 'X'];
 var tiles = {};
 
 var centerX = 0;
@@ -47,27 +47,22 @@ var joystickIdleArea = 0;
 
 var canvas;
 
-function initCoordinates() {
+function recalculateSizes() {
 	if (!gridHeight || !gridWidth) {
 		return;
 	}
 	// cellSide = min(minDim / gridHeight, minDim / gridWidth);
 
-	controlWidth = window.innerWidth;
-	levelWidth = window.innerWidth;
-	levelHeight = window.innerHeight - controlHeight;
+	// controlWidth = window.innerWidth;
+	// levelWidth = window.innerWidth;
+	// levelHeight = window.innerHeight - controlHeight;
 
-	minDim = min(levelWidth, levelHeight); // - 100;  // margin
+	minDim = min(window.innerWidth, window.innerHeight - controlHeight); // - 100;  // margin
 	cellSide = Math.floor(min(minDim / gridHeight, minDim / gridWidth));
 
-	if (gridHeight && gridWidth) {
-		levelHeight = cellSide * gridHeight;
-		levelWidth = cellSide * gridWidth;
-		controlWidth = levelWidth;
-	}
-}
+	levelHeight = cellSide * gridHeight;
+	levelWidth = cellSide * gridWidth;
 
-function scaleTile(img) {
-	img.resize(cellSide, 0);
+	recalculateControl();
 }
 

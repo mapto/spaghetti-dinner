@@ -4,11 +4,10 @@ var swap = [1,-1];
 
 var speed = framerate * .01;
 
-function initControl() {
-  centerX = levelWidth/2;
+function recalculateControl() {
+  controlWidth = levelWidth;
+  centerX = controlWidth/2;
   centerY = levelHeight + controlHeight/2;
-  console.log(levelHeight);
-  console.log(controlHeight);
   joystickIdleArea = cellSide/2;	
 }
 

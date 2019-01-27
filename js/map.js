@@ -1,8 +1,21 @@
-function initTiles() {
+function loadLevel(argument) {
+	let url = new URL(location.href);
+	let lvl = url.searchParams.get("l") || 0;
+	loadStrings("level/" + lvl + ".level", parseLevel);
+}
+
+function loadTiles() {
 	for (let next of tileTypes) {
-		// console.log("tiles/" + next + ".png");
-		tiles[next] = loadImage("images/tiles/" + next + ".png", scaleTile);
-	}	
+		// console.log("tiles/" + next + ".png");\
+		for (let i = 0; i < 4; i++) {
+			tiles[next + i] = loadImage("images/tiles/" + next + i + ".png", scaleTile);			
+		}
+	}
+	// console.log(tiles);
+}
+
+function scaleTile(img) {
+	img.resize(cellSide, 0);
 }
 
 /*
@@ -31,7 +44,7 @@ function initMapSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide) {
 	}
 }
 
-function loadLevel(data) {
+function parseLevel(data) {
 	var cell = [], rot = [];
 	var rows = 0, rot_rows = 0;
 	gridWidth = data[0].length;
@@ -63,8 +76,9 @@ function loadLevel(data) {
 
 	level = {cell: cell, rot: rot};
 	console.log(level);
-	initCoordinates();
+	// initCoordinates();
 	// scaleTiles(cellSide);
+	loadTiles();
 }
 
 function initLevel(level) {
@@ -74,12 +88,15 @@ function initLevel(level) {
 			var m = createImage(cellSide, cellSide);
 			mw = m.width; mh = m.height;
 			// m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);
-			let candidate = level.cell[i][j] + level.rot[i][j];
-			if (candidate in tiles) {
-				m.copy(tiles[level.cell[i][j] + level.rot[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);				
-			} else {
-				m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);				
-			}
+			let candidate = level.cell[i][j] + (level.rot[i][j]%4);
+			console.log(candidate);
+			// if (candidate in tiles) {
+			console.log(tiles);
+			console.log(tiles[candidate]);
+			m.copy(tiles[candidate], 0, 0, mw, mh, 0, 0, mw, mh);				
+			// } else {
+				// m.copy(tiles[level.cell[i][j]], 0, 0, mw, mh, 0, 0, mw, mh);				
+			// }
 			gridSprites[j][i].addImage("grid" + i + j, m);  // coordinates swapped to match level file
 			pop();
 		}

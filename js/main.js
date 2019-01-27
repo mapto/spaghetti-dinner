@@ -1,16 +1,16 @@
 function preload() {
-	let url = new URL(location.href);
-	let lvl = url.searchParams.get("l") || 0;
-	loadStrings("level/" + lvl + ".level", loadLevel);
-	initCoordinates();
-	initTiles();
+	loadLevel();
+	// initCoordinates();
+	// initTiles();
 	// scaleTiles(cellSide);
-	preloadCharacter();
+	loadCharacter();
+	loadMonster();
 }
 
 function setup() {
+	recalculateSizes();
 	frameRate(framerate);
-	initControl();
+	// initControl();
 	canvas = createCanvas(minDim, minDim + controlHeight);
 	initMapSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide);
 	// console.log(tiles);
@@ -18,7 +18,7 @@ function setup() {
 	// if (level && gridSprites && gridSprites.length) {
 	initLevel(level);
 	initCharacter();
-	resizeCanvas(minDim, minDim + controlHeight);
+	// resizeCanvas(minDim, minDim + controlHeight);
 }
 
 function draw() {
@@ -38,12 +38,12 @@ function draw() {
 }
 
 window.onresize = function() {
-	initCoordinates();
-	initControl();
-	resizeCanvas(minDim, minDim + controlHeight);
+	recalculateSizes();
+	// initControl();
+	resizeCanvas(levelWidth, levelHeight + controlHeight);
 
 	//canvas.size(minDim,minDim);
-	console.log(cellSide);
+	// console.log(cellSide);
 	// scaleTiles(cellSide);
 	//initSprites(gridXZero, gridYZero, gridWidth, gridHeight, cellSide);
 	// console.log(tiles);

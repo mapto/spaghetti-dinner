@@ -1,29 +1,35 @@
-var charImage;
-var character = {};
+var monster = {};
+var monsterFrames = [0,1];
+var monsterImages = []; 
 
-var charSize = cellSide;
+var monsterSize = cellSide*2;
 
-function preloadCharacter() {
-	let url = new URL(location.href);
-	let ch = url.searchParams.get("c") || "pirate";
-	charImage = loadImage("images/" + ch + ".png", scaleChar); // TODO: scale not charSize - dependent
+function loadMonster() {
+	for (let i of monsterFrames) {
+		// monsterImages[i] = loadImage("images/monster" + i + ".png", scaleMonster);
+		monsterImages[i] = loadImage("images/monster" + i + ".png");
+	}
 }
 
-function initCharacter() {
-	character.sprite = createSprite(0, 0, charSize, charSize);
-	character.sprite.addImage("3", charImage);
-	character.pos = grid2screen([Math.ceil(gridWidth/2), gridHeight]);
-	character.draw = character.sprite.draw;
+function initMonster() {
+	monster.sprite = createSprite(0, 0, monsterSize, monsterSize);
+	for (let i in monsterImages) {
+		monster.sprite.addImage("" + i, charImage[i]);
+	}
+	monster.pos = grid2screen([Math.ceil(gridWidth/2), gridHeight]);
+	monster.draw = character.sprite.draw;
 }
 
-function scaleChar(img) {
-	img.resize(cellSide*.7, 0);
+function scaleMonster() {
+	monsterSize = cellSide*2;
+	for (let img of monsterImages) {
+		img.resize(monsterSize, 0);		
+	}
 }
 
-function drawCharacter() {
+function drawMonster() {
 	push();
-	translate(character.pos[0], character.pos[1]);
-	// rotate(level.rot[i][j] * PI/2);
-	character.draw();
+	translate(monster.pos[0], monster.pos[1]);
+	monster.draw();
 	pop();
 }
