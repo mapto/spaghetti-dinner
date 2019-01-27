@@ -34,18 +34,18 @@ function blocked(pos, delta, dir) {
 	let rot = level.rot[pos[1]][pos[0]];
 	// console.log(type);
 	// console.log(character.pos);
-	console.log(level);
+	// console.log(level);
 	console.log(pos);
-	console.log("delta: " + Math.sign(delta));
-	console.log("dir: " + dir);
+	// console.log("delta: " + Math.sign(delta));
+	// console.log("dir: " + dir);
 	let shift = calcShift(delta, dir);
 	// let shift = shiftMap[""+Math.sign(delta)][dir];
 	// let shift = Math.sign(delta) - dir + 2;
 	// let shift = Math.sign(delta) > 0 ? (dir ? 0 : 3) : (dir ? 2 : 1);
 
-	console.log("rot: " + rot);
-	console.log("shift: " + shift);
-	console.log("block: " + blocks[type]);
+	// console.log("rot: " + rot);
+	// console.log("shift: " + shift);
+	// console.log("block: " + blocks[type]);
 	console.log("block: " + blocks[type][(shift-rot)%4]);
 	return blocks[type][(shift-rot)%4];
 }
@@ -63,13 +63,57 @@ function canGoIn(delta, dir) {
 }
 
 function canMove(delta, dir) {
-	tilePos = screen2grid(character.pos);
+	let tilePos = screen2grid(character.pos);
+	console.log("CAnmove");
+	console.log(tilePos);
+
+	if (tilePos[0] === Math.floor(gridWidth/2) && tilePos[1] === gridHeight - 1) {
+		if (dir === 1 && Math.sign(delta) === -1) {
+			reinit();
+		}
+		return false;
+	}
+	if (tilePos[0] === 0 && (tilePos[1] === gridHeight - 1 || tilePos[1] === 0)) {
+		if (dir === 1 && Math.sign(delta) === 1) {
+			endGame();
+		}
+		return false;
+	}
+
+	let tileCoord = grid2canvasc(tilePos);
+	console.log(tileCoord);
+	console.log(character.pos)
+	if (Math.abs(character.pos[dir] - tileCoord[dir]) > 2/3 * cellSide) {
+		return true;
+	}
+	/*
+	console.log("Coords:");
+	console.log(character.pos);
+	console.log(screen2canvas(character.pos));
+	console.log(screen2grid(character.pos));
+	console.log(grid2canvas(screen2grid(character.pos)));
+	let tileCoord = grid2canvas(screen2grid(character.pos));
+	console.log(cellSide);
+	console.log(character.pos[dir] - tileCoord[dir]);
+	if (delta > 0 && cellSide < (character.pos[dir] - tileCoord[dir])) {
+		return true;
+	}
+	// if (delta < 0 && )
+	*/
 	return canGoOut(delta, dir) && canGoIn(delta, dir);
 	// character.sprite.collide()
 }
 
-function endGame() {
+function reinit() {
+	location.href = "index.html";
+}
 
+function endGame() {
+	console.log("End game");
+	let url = new URL(location.href);
+	let ch = url.searchParams.get("c") || "pirate";
+	let lvl =  url.searchParams.get("l") || 0;
+	// location.href = "play.html?c=" + ch + "&l=" + (parseInt(lvl)+1);
 }
 
 function mousePressed(event) {
@@ -107,6 +151,9 @@ function mouseDragged(event) {
   if (Math.abs(d[dir]) > joystickIdleArea) {
   	delta = d[dir] * speed;
 	// console.log("delta: " + Math.sign(delta));
+
+	// console.log(character.pos);
+	// console.log(character.sprite);
 
   	mapCenter = Math.floor(levelDim[dir]/2);
   	if (canMove(delta, dir)) {

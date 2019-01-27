@@ -34,6 +34,8 @@ function draw() {
   	strokeWeight(2);
 	rect(0, levelHeight, levelWidth, levelHeight + controlHeight);
     circle(centerX - (window.innerWidth - levelWidth)/2, centerY, joystickIdleArea);
+	// circle(character.pos[0], character.pos[1], 5);
+
     if (started) {
     	circle(mouseX, mouseY, 10);    	
     }

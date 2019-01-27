@@ -2,11 +2,25 @@ function min(a,b) {
 	return a > b ? b : a;
 }
 
-function grid2screen(pos) {
+function grid2canvas(pos) {
 	return [cellSide * pos[0] - cellSide/2, cellSide * pos[1] - cellSide/2];
 }
 
+function grid2canvasc(pos) {
+	return [cellSide * pos[0], cellSide * pos[1]];
+}
+
+function screen2canvas(pos) {
+	// console.log(pos);
+	return [Math.floor(pos[0] - (window.innerWidth - levelWidth)/2), pos[1]];
+}
+
 function screen2grid(pos) {
+	return [Math.floor((pos[0]) / cellSide),
+		Math.floor((pos[1]) / cellSide)];
+}
+
+function canvas2grid(pos) {
 	return [Math.floor((pos[0]) / cellSide),
 		Math.floor((pos[1]) / cellSide)];
 }

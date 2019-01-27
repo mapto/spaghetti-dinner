@@ -99,6 +99,7 @@ function drawLevel(level) {
 			push();
 			translate(j * cellSide + cellSide/2, i * cellSide + cellSide/2);
 			// rotate(level.rot[i][j] * PI/2);
+
 			gridSprites[j][i].draw();
 			pop();
 		}
