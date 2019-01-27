@@ -205,6 +205,6 @@ touchStarted = mousePressed;
 touchEnded = mouseReleased;
 
 function touchMoved(event) {
-	console.log(event);
+	// console.log(event);
 	mouseDragged(event.touches[0]);
 }
