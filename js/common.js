@@ -59,7 +59,7 @@ var blocks = {
 }
 */
 
-var framerate = 10;
+var framerate = 60;
 
 // declare shared/global variables
 var gridWidth = 3; // depends on level
