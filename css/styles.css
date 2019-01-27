@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+
+.html {
+    height: 100%;
+}
+
+.body {
+  margin: 0;
+  min-height: 100%;
+
+}
+
+.h1 {
+  font-size: 6.6em;
+}
+
+.h2 {
+  font-size: 2.3em;
+}
+
+.h1, .h2 {
+  font-family: "Amatic SC";
+}
+
+.div {
+  display: flex;
+}
+
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  touch-action: none;
+  width: 700px;
+}
+
+
+.a {
+  border-radius: 10px;
+  margin: 1em 3em 0 3em;
+  position: absolute;
+  bottom: 1em;
+}
+
+.a:hover {
+  background-color: #ccc;
+}
+
+#one {
+  left: 0;
+}
+
+#two {
+  right: 0;
+}
+
+.img {
+  width: 25em;
+}
